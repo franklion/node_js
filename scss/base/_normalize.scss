@@ -1,0 +1,12 @@
+body {
+  background-color: #efe7e0;
+}
+#wrapper {
+  width: 500px;
+  height: 800px;
+  background-color: #ddccbf;
+  border: solid 1px white;
+  margin: 0 auto;
+  text-align: center;
+  @include box-shadow(black 0px 0px 3px);
+}

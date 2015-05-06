@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Char Room</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="dist/assets/css/style.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="dist/assets/js/main.js"></script>
+
+
+</head>
+<body>
+
+  <div id="status">
+    <div class="status-name">
+     <p>名稱:  <span>frank</span></p>
+    </div>
+    <div class="status-amount">
+      <p>總人數:  <span>60</span></p>
+    </div>
+  </div>
+  <div id="wrapper">
+
+    <div id="output"></div>
+    <div id="horizontal-bar"></div>
+    <div id="send">
+      <div class="send-bar">
+        <span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      </div>
+      <input type="text" id="data" size="100"/>
+      <button id="send-text" value="send text"/>
+        <p>Send</p>
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>

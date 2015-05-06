@@ -1,0 +1,40 @@
+/* 狀態列 */
+#status {
+  width: 500px;
+  height: 100px;
+  margin: 10px auto;
+  font-size: 24px;
+  &:before {
+    content: '';
+    height: 100%;
+    width: 0px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  &:after {
+    clear: both;
+  }
+}
+/* 狀態列-名稱 */
+.status-name {
+  width: 230px;
+  display: inline-block;
+  vertical-align: middle;
+  p span {
+    color: black;
+    font-size: 24px;
+    font-family: Arial;
+  }
+}
+/* 狀態列-總人數 */
+.status-amount {
+  width: 250px;
+  display: inline-block;
+  vertical-align: middle;
+  p span {
+    color: red;
+    font-size: 24px;
+    font-family: Arial;
+  }
+}
+
