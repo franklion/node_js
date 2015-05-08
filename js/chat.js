@@ -1,18 +1,41 @@
 /* client chatroom */
 
 /* set up connect */
-  var socket = io.connect('http://192.168.0.235:3000');
+  var ip   = 'http://192.168.0.235';
+  var port = '3000';
+  var socket = io.connect(ip + ':' + port);
     socket.on('connect', function () {
     socket.emit('addme', prompt('Who are you?'));
   });
 
-/* chat */
-  socket.on('chat', function (userName, data) {
-    var p =  $('<p>');
-    var $output = $('#output');
-    p.html(userName + ': ' + data);
-    $output.append(p);
+/* publish login and logout messages */
+
+  var $output;
+  socket.on('LogInOutMessages', function (userName, data) {
+    var $logINOut = $('<h3>');
+    publishMessages($logINOut, userName, data);
+  });
+
+/* publish global messages */
+  var $globalMessage;
+  socket.on('globalMessages', function (userName, data) {
+    $globalMessage = $('<p>');
+    publishMessages($globalMessage, userName, data);
+  });
+
+/* function for publish messages */
+  function publishMessages(selector, userName, data) {
+    $output = $('#output');
+    selector.html(userName + ':' + data);
+    $output.append(selector);
     $output.scrollTop($output[0].scrollHeight);
+  }
+
+/* set fontColor */
+  socket.on('setFontColor', function (fontColor) {
+    var fontColor = '#' + fontColor;
+    console.log($globalMessage.text());
+    $globalMessage.css({color: fontColor});
   });
 
 /* status - count */
@@ -23,8 +46,4 @@
 /* status - name */
   socket.on('statusName', function (userName) {
     $('.status-name p span').text(userName);
-  });
-
-  socket.on('test', function (data) {
-    console.log(data);
   });

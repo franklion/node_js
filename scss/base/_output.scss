@@ -6,9 +6,11 @@
   overflow: auto;
   background-color: white;
   margin-top: 10px;
+  text-align: left;
   p {
-    text-align: left;
-    font-size: 24px;
+    padding: 10px;
+  }
+  h3 {
     padding: 10px;
   }
 }

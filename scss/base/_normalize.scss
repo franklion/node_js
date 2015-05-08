@@ -1,3 +1,4 @@
+$fontSize : 20px;
 body {
   background-color: #efe7e0;
 }
@@ -9,4 +10,19 @@ body {
   margin: 0 auto;
   text-align: center;
   @include box-shadow(black 0px 0px 3px);
+}
+h1 {
+  font-size: $fontSize * 2;
+}
+h2 {
+  font-size: $fontSize * 1.6;
+}
+h3 {
+  font-size: $fontSize * 1.4;
+}
+h4 {
+  font-size: $fontSize * 1.2;
+}
+p{
+  font-size: $fontSize;
 }

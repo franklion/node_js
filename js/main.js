@@ -5,6 +5,7 @@ $(function () {
   $('#send-text').click(function () {
     var text = $('#data').val();
     socket.emit('sendchat', text);
+    $('#data').val('');
   });
 
   /* input text auto commit */

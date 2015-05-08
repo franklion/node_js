@@ -60,6 +60,21 @@ body {
   -webkit-box-shadow: black 0px 0px 3px;
   box-shadow: black 0px 0px 3px; }
 
+h1 {
+  font-size: 40px; }
+
+h2 {
+  font-size: 32px; }
+
+h3 {
+  font-size: 28px; }
+
+h4 {
+  font-size: 24px; }
+
+p {
+  font-size: 20px; }
+
 /* 狀態列 */
 #status {
   width: 500px;
@@ -103,10 +118,11 @@ body {
   height: 580px;
   overflow: auto;
   background-color: white;
-  margin-top: 10px; }
+  margin-top: 10px;
+  text-align: left; }
   #output p {
-    text-align: left;
-    font-size: 24px;
+    padding: 10px; }
+  #output h3 {
     padding: 10px; }
 
 /* 水平區塊-分隔文字輸出和文字輸入 */

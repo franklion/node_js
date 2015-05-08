@@ -1,4 +1,6 @@
 /* server node.js */
+
+/* require modules */
 var express = require('express');
 var app     = express();
 var http    = require('http').Server(app);
@@ -6,14 +8,16 @@ var io      = require('socket.io')(http);
 var fs      = require('fs');
 var _       = require('lodash');
 
+/* config */
+var port = 3000;
+app.use(express.static('public'));
 
 
-  app.use(express.static('public'));
 
-  http.listen(3000, function () {
+  http.listen(port, function () {
     var host = http.address().address;
     var port = http.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
+    console.log('ChatRoom Server Listening at http://%s:%s', host, port);
   });
 
 
@@ -35,28 +39,23 @@ var _       = require('lodash');
     socket.on('addme', function (userName) {
       count++;
       socket.userName = userName;
-      socket.emit('chat', 'SERVER', 'You have connected');
+      socket.emit('LogInOutMessages', 'SERVER', 'You have connected');
       socket.emit('statusName', userName);
       io.sockets.emit('statusCount', count);
-      socket.broadcast.emit('chat', 'SERVER', userName + ' 進入聊天室');
-
-      io.emit('test', randomColorCode());
+      socket.broadcast.emit('LogInOutMessages', 'SERVER', userName + ' 進入聊天室');
     });
-
+    var fontColor = randomColorCode();
     socket.on('sendchat', function (data) {
-      io.sockets.emit('chat', socket.userName, data);
+      io.sockets.emit('globalMessages', socket.userName, data);
+      io.sockets.emit('setFontColor', fontColor);
     });
 
     socket.on('disconnect', function () {
       count--;
-      io.sockets.emit('chat', 'SERVER', socket.userName + ' 離開聊天室')
+      io.sockets.emit('LogInOutMessages', 'SERVER', socket.userName + ' 離開聊天室');
       io.sockets.emit('statusCount', count);
     });
 
-    //socket.on('new', function () {
-    //  //var a = randomColorCode();
-    //  io.emit('test', a);
-    //});
   });
 
   function randomColorCode() {
