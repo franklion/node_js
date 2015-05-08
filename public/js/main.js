@@ -28,3 +28,24 @@
   socket.on('test', function (data) {
     console.log(data);
   });
+/* main js */
+$(function () {
+
+  /* emit input text */
+  $('#send-text').click(function () {
+    var text = $('#data').val();
+    socket.emit('sendchat', text);
+  });
+
+  /* input text auto commit */
+  var inputText;
+  $('#data').keyup(function (event) {
+
+    if(event.keyCode == 13) {
+      inputText = $(this).val();
+      $('#send-text').click();
+      $(this).val('');
+    }
+  });
+
+});

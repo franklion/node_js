@@ -20,7 +20,7 @@
   width: 230px;
   display: inline-block;
   vertical-align: middle;
-  p span {
+  p {
     color: black;
     font-size: 24px;
     font-family: Arial;
@@ -31,10 +31,12 @@
   width: 250px;
   display: inline-block;
   vertical-align: middle;
-  p span {
-    color: red;
+  p {
     font-size: 24px;
     font-family: Arial;
+    span {
+      color: red;
+    }
   }
 }
 

@@ -2,33 +2,33 @@
  * Created by fg on 15/5/6.
  */
 /* 載入外掛 */
-var gulp = require('gulp'),
-  sass = require('gulp-ruby-sass'),
-  compass = require('gulp-compass'),
-  minifyCss = require('gulp-minify-css'),
-  uglify = require('gulp-uglify'),
-  jshint = require('gulp-jshint'),
-  autoprefixer = require('gulp-autoprefixer'),
-  rename = require('gulp-rename'),
-  clean = require('gulp-clean'),
-  fs = require('fs'),
-  concat = require('gulp-concat'),
-  header = require('gulp-header'),
-  notify = require('gulp-notify'),
-  cache = require('gulp-cache');
+var gulp         = require('gulp'),
+    sass         = require('gulp-ruby-sass'),
+    compass      = require('gulp-compass'),
+    minifyCss    = require('gulp-minify-css'),
+    uglify       = require('gulp-uglify'),
+    jshint       = require('gulp-jshint'),
+    autoprefixer = require('gulp-autoprefixer'),
+    rename       = require('gulp-rename'),
+    clean        = require('gulp-clean'),
+    fs           = require('fs'),
+    concat       = require('gulp-concat'),
+    header       = require('gulp-header'),
+    notify       = require('gulp-notify'),
+    cache        = require('gulp-cache');
 
 /* compile compass */
 gulp.task('compile-compass', function() {
   gulp.src('scss/*.scss')
     .pipe(compass({
-      css: 'dist/assets/css',
+      css: 'public/css',
       sass: 'scss',
       comments: false
     }))
-    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(gulp.dest('public/css'))
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dist/assets/css'))
+    .pipe(gulp.dest('public/css'))
     .pipe(notify({message: 'Compass task complete'}));
 });
 
@@ -38,16 +38,16 @@ gulp.task('compile-js', function () {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/assets/js'))
+    .pipe(gulp.dest('public/js'))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dist/assets/js'))
+    .pipe(gulp.dest('public/js'))
     .pipe(notify({message: 'Javascript task complete'}))
 });
 
 /* clean task */
 gulp.task('clean', function () {
-  return gulp.src(['dist/assets/css', 'dist/assets/js', 'dist/assets/img', 'dist/assets/html'], {read: false})
+  return gulp.src(['public/css', 'public/js'], {read: false})
     .pipe(clean());
 });
 

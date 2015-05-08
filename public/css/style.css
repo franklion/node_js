@@ -80,7 +80,7 @@ body {
   width: 230px;
   display: inline-block;
   vertical-align: middle; }
-  .status-name p span {
+  .status-name p {
     color: black;
     font-size: 24px;
     font-family: Arial; }
@@ -90,19 +90,24 @@ body {
   width: 250px;
   display: inline-block;
   vertical-align: middle; }
-  .status-amount p span {
-    color: red;
+  .status-amount p {
     font-size: 24px;
     font-family: Arial; }
+    .status-amount p span {
+      color: red; }
 
 /* 聊天室文字輸出區塊 */
 #output {
   display: inline-block;
   width: 480px;
   height: 580px;
-  overflow: hidden;
+  overflow: auto;
   background-color: white;
   margin-top: 10px; }
+  #output p {
+    text-align: left;
+    font-size: 24px;
+    padding: 10px; }
 
 /* 水平區塊-分隔文字輸出和文字輸入 */
 #horizontal-bar {

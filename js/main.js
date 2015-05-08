@@ -1,17 +1,21 @@
 /* main js */
 $(function () {
 
-  console.log(123);
-  var inputText;
-  $('#data').keyup(function (event) {
-    if(event.keyCode == 13) {
-      inputText = $(this).value();
-      $('#send-text').click();
-    }
+  /* emit input text */
+  $('#send-text').click(function () {
+    var text = $('#data').val();
+    socket.emit('sendchat', text);
   });
 
-  $('#send-text').click(function () {
-    console.log(inputText);
+  /* input text auto commit */
+  var inputText;
+  $('#data').keyup(function (event) {
+
+    if(event.keyCode == 13) {
+      inputText = $(this).val();
+      $('#send-text').click();
+      $(this).val('');
+    }
   });
 
 });
