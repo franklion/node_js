@@ -56,6 +56,7 @@ body {
   border: solid 1px white;
   margin: 0 auto;
   text-align: center;
+  position: relative;
   -moz-box-shadow: black 0px 0px 3px;
   -webkit-box-shadow: black 0px 0px 3px;
   box-shadow: black 0px 0px 3px; }
@@ -74,6 +75,9 @@ h4 {
 
 p {
   font-size: 20px; }
+
+h1, h2, h3, h4, p {
+  font-family: 微軟正黑體 , 新細明體, sans-serif; }
 
 /* 狀態列 */
 #status {
@@ -182,3 +186,54 @@ p {
     font-size: 24px;
     font-family: Arial;
     line-height: 60px; }
+
+.popList {
+  width: 250px;
+  height: 580px;
+  background-color: #fafafa;
+  position: absolute;
+  top: 10px;
+  right: -280px;
+  opacity: 1;
+  border: solid 5px #DDCCBF;
+  -moz-box-shadow: 0px 0px 10px black;
+  -webkit-box-shadow: 0px 0px 10px black;
+  box-shadow: 0px 0px 10px black; }
+  .popList .popList-top {
+    width: 170px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+    .popList .popList-top h3 {
+      padding-top: 15px;
+      text-align: center; }
+  .popList .popList-content {
+    width: 240px;
+    height: 470px;
+    text-align: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fafafa; }
+    .popList .popList-content h4 {
+      padding: 10px;
+      text-shadow: 0px 0px 3px #aed5fc; }
+    .popList .popList-content .popList-person {
+      width: 240px;
+      height: 60px; }
+      .popList .popList-content .popList-person p {
+        padding: 2px 5px;
+        display: inline-block;
+        vertical-align: middle; }
+      .popList .popList-content .popList-person img {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        vertical-align: middle; }
+    .popList .popList-content .popList-person:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle; }

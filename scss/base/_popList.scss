@@ -1,0 +1,68 @@
+.popList {
+  width: 250px;
+  height: 580px;
+  background-color: #fafafa;
+  position: absolute;
+  top: 10px;
+  right: -280px;
+  opacity: 1;
+  //right: 0px;
+
+  border: solid 5px #DDCCBF;
+  @include box-shadow(0px 0px 10px black);
+
+
+  .popList-top {
+    width: 170px;
+    height: 50px;
+    //background: white;
+    margin: 0 auto;
+    margin-top: 20px;
+    @include border-radius(10px);
+    h3 {
+      padding-top: 15px;
+      text-align: center;
+    }
+  }
+
+  .popList-content {
+    width: 240px;
+    height: 470px;
+    text-align: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fafafa;
+
+    //&::-webkit-scrollbar {
+    //  width: 10px;
+    //  height: 30px;
+    //  background-color: black;
+    //}
+
+    h4 {
+      padding: 10px;
+      text-shadow: 0px 0px 3px #aed5fc;
+    }
+    .popList-person {
+      width: 240px;
+      height: 60px;
+      p {
+        padding: 2px 5px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .popList-person:before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}

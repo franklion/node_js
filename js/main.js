@@ -19,4 +19,14 @@ $(function () {
     }
   });
 
+
+  /*
+  $('#send-bar-list').click(function () {
+
+    $('.popList').animate({
+      //opacity: 100,
+      right: -280
+    }, 1500 );
+  });*/
+
 });

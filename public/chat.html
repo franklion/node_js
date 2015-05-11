@@ -2,39 +2,51 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Char Room</title>
+  <title>Chat Room</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://192.168.0.235:3000/socket.io/socket.io.js"></script>
+  <script src="http://192.168.0.247:3000/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body>
 
   <div id="status">
     <div class="status-name">
-     <p>名稱:  <span></span></p>
+     <p>暱稱:  <span></span></p>
     </div>
     <div class="status-amount">
       <p>總人數:  <span></span></p>
     </div>
   </div>
   <div id="wrapper">
-
     <div id="output"></div>
     <div id="horizontal-bar"></div>
     <div id="send">
       <div class="send-bar">
         <span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
-        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-th-list" id="send-bar-list" aria-hidden="true"></span>
       </div>
       <input type="text" id="data" size="100"/>
       <button id="send-text" value="send text"/>
         <p>Send</p>
       </button>
     </div>
+    <div class="popList">
+      <div class="popList-top">
+        <h3></h3>
+      </div>
+      <div class="popList-content">
+        <!--<h4>聊天室人員清單</h4>-->
+      </div>
 
+    </div>
   </div>
 
+  <script type="text/template" id="template">
+    <div class="popList-person">
+      <img src="images/person.svg" alt="person"><p>{name}</p>
+    </div>
+  </script>
 </body>
 </html>

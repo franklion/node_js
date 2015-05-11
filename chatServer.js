@@ -13,14 +13,14 @@ var port = 3000;
 app.use(express.static('public'));
 
 
-
+/* http listen */
   http.listen(port, function () {
     var host = http.address().address;
     var port = http.address().port;
     console.log('ChatRoom Server Listening at http://%s:%s', host, port);
   });
 
-
+/* read file */
   app.get('/', function (req, res) {
     fs.readFile(__dirname + '/public/chat.html', function (err, data) {
       if (err) {
@@ -33,31 +33,89 @@ app.use(express.static('public'));
     });
   });
 
-  var count = 0;
+
+/* connect event */
+
+  var personsList = [];
   io.sockets.on('connect', function (socket) {
 
-    socket.on('addme', function (userName) {
-      count++;
+    /* login check */
+    socket.on('loginCheck', function (userName) {
+      var  authStatus = checkPersonsList(userName);
+      if (authStatus) {
+        loginSuccess(userName, socket);
+      } else {
+        loginFail(userName, socket);
+      }
+    });
+
+    /* login success */
+    function loginSuccess(userName) {
+      addPersonsList(userName);
       socket.userName = userName;
       socket.emit('LogInOutMessages', 'SERVER', 'You have connected');
       socket.emit('statusName', userName);
-      io.sockets.emit('statusCount', count);
+      io.sockets.emit('statusCount', calculatePersonAmount());
       socket.broadcast.emit('LogInOutMessages', 'SERVER', userName + ' 進入聊天室');
-    });
+      socket.emit('loginStatus', true);
+      io.sockets.emit('test', personsList);
+
+    }
+
+    /* login fail */
+    function loginFail(userName) {
+      socket.emit('loginStatus', false);
+    }
+
+    /* sends global messages */
     var fontColor = randomColorCode();
     socket.on('sendchat', function (data) {
       io.sockets.emit('globalMessages', socket.userName, data);
       io.sockets.emit('setFontColor', fontColor);
     });
 
+    /* disconnect with client */
     socket.on('disconnect', function () {
-      count--;
+      deletePersonsList(socket.userName);
       io.sockets.emit('LogInOutMessages', 'SERVER', socket.userName + ' 離開聊天室');
-      io.sockets.emit('statusCount', count);
+      io.sockets.emit('statusCount', calculatePersonAmount());
     });
 
   });
 
+  setInterval(function () {
+    debug();
+  },1500);
+
+
+/* check persons list */
+  function checkPersonsList(userName) {
+    if (personsList.indexOf(userName) === -1 ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+/* add person */
+  function addPersonsList(userName) {
+      personsList.push(userName);
+  }
+
+/* delete person */
+  function deletePersonsList(userName) {
+    if (personsList.indexOf(userName) !== -1) {
+      var index = personsList.indexOf(userName);
+      personsList.splice(index,1);
+    }
+  }
+
+/* calculate person amount */
+  function calculatePersonAmount() {
+    return personsList.length;
+  }
+
+/* generate random color code */
   function randomColorCode() {
     var colorCode = [
       'FFEBFF','FFEBF5','FFEBEB','FFF5EB','FFFFEB','F5FFEB','EBFFEB','EBFFF5','EBFFFF','EBF5FF','EBEBFF','F5EBFF',
@@ -77,6 +135,13 @@ app.use(express.static('public'));
     var length = colorCode.length;
     var index =  Math.floor( Math.random() * length );
     return colorCode[index];
+  }
+
+  function debug() {
+    console.log('amount: ' + personsList.length);
+    personsList.forEach(function (name) {
+      console.log('userName: ' + name);
+    });
   }
 
 
