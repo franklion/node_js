@@ -50,6 +50,7 @@ app.use(express.static('public'));
     function loginSuccess(userName) {
       addPersonsList(userName);
       socket.userName = userName;
+      socket.fontColor = randomColorCode();
       socket.emit('LogInOutMessages', 'SERVER', 'You have connected');
       socket.emit('statusName', userName);
       io.sockets.emit('statusCount', calculatePersonAmount());
@@ -64,10 +65,10 @@ app.use(express.static('public'));
     }
 
     /* sends global messages */
-    var fontColor = randomColorCode();
-    socket.on('sendchat', function (data) {
+    socket.on('sendchat', function (data, color) {
+      socket.fontColor = color || socket.fontColor;
       io.sockets.emit('globalMessages', socket.userName, data);
-      io.sockets.emit('setFontColor', fontColor);
+      io.sockets.emit('setFontColor', socket.fontColor);
     });
 
     /* disconnect with client */
