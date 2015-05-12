@@ -1,5 +1,3 @@
-/* server node.js */
-
 /* require modules */
 var express = require('express');
 var app     = express();
@@ -33,7 +31,6 @@ app.use(express.static('public'));
     });
   });
 
-
 /* connect event */
 
   var personsList = [];
@@ -56,10 +53,9 @@ app.use(express.static('public'));
       socket.emit('LogInOutMessages', 'SERVER', 'You have connected');
       socket.emit('statusName', userName);
       io.sockets.emit('statusCount', calculatePersonAmount());
-      socket.broadcast.emit('LogInOutMessages', 'SERVER', userName + ' 進入聊天室');
+      socket.broadcast.emit('LogInOutMessages', 'SERVER', userName + ' join the room');
       socket.emit('loginStatus', true);
-      io.sockets.emit('test', personsList);
-
+      io.sockets.emit('statusList', personsList);
     }
 
     /* login fail */
@@ -77,16 +73,12 @@ app.use(express.static('public'));
     /* disconnect with client */
     socket.on('disconnect', function () {
       deletePersonsList(socket.userName);
-      io.sockets.emit('LogInOutMessages', 'SERVER', socket.userName + ' 離開聊天室');
+      io.sockets.emit('LogInOutMessages', 'SERVER', socket.userName + ' exit');
       io.sockets.emit('statusCount', calculatePersonAmount());
+      io.sockets.emit('statusList', personsList);
     });
 
   });
-
-  setInterval(function () {
-    debug();
-  },1500);
-
 
 /* check persons list */
   function checkPersonsList(userName) {
@@ -136,6 +128,11 @@ app.use(express.static('public'));
     var index =  Math.floor( Math.random() * length );
     return colorCode[index];
   }
+
+
+  setInterval(function () {
+    debug();
+  },1500);
 
   function debug() {
     console.log('amount: ' + personsList.length);

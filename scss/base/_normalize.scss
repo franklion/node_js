@@ -5,12 +5,21 @@ body {
 #wrapper {
   width: 500px;
   height: 800px;
-  background-color: #ddccbf;
-  border: solid 1px white;
   margin: 0 auto;
-  text-align: center;
   position: relative;
-  @include box-shadow(black 0px 0px 3px);
+  .output-left {
+    width: 500px;
+    height: 800px;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    z-index: 999;
+    background-color: #ddccbf;
+    border: solid 1px white;
+    @include box-shadow(black 0px 0px 3px);
+    text-align: center;
+  }
+
 }
 h1 {
   font-size: $fontSize * 2;
@@ -28,5 +37,5 @@ p{
   font-size: $fontSize;
 }
 h1, h2, h3, h4, p {
-  font-family: 微軟正黑體 , 新細明體, sans-serif;
+  font-family: sans-serif, 微軟正黑體 , 新細明體;
 }

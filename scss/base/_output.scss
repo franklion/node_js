@@ -1,12 +1,12 @@
 /* 聊天室文字輸出區塊 */
 #output {
-  display: inline-block;
   width: 480px;
   height: 580px;
-  overflow: auto;
-  background-color: white;
+  display: inline-block;
   margin-top: 10px;
+  overflow: auto;
   text-align: left;
+  background-color: white;
   p {
     padding: 10px;
   }

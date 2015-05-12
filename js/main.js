@@ -2,31 +2,38 @@
 $(function () {
 
   /* emit input text */
+  var inputText;
   $('#send-text').click(function () {
-    var text = $('#data').val();
-    socket.emit('sendchat', text);
-    $('#data').val('');
+
+    inputText = $('#data').val();
+    if (inputText !== '') {
+      socket.emit('sendchat', inputText);
+      $('#data').val('');
+    }
+
   });
 
   /* input text auto commit */
-  var inputText;
   $('#data').keyup(function (event) {
 
-    if(event.keyCode == 13) {
-      inputText = $(this).val();
+    if(event.keyCode == 13 ) {
       $('#send-text').click();
       $(this).val('');
     }
   });
 
-
-  /*
-  $('#send-bar-list').click(function () {
-
+  /* pop the list */
+  $('.send-bar-list').click(function() {
     $('.popList').animate({
-      //opacity: 100,
       right: -280
-    }, 1500 );
-  });*/
+    }, 1000 , 'easeOutBounce');
+  });
+
+  /* close the pop list */
+  $('.clear').click(function() {
+    $('.popList').animate({
+      right: 10
+    }, 800 , 'easeInSine');
+  });
 
 });

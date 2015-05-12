@@ -1,6 +1,6 @@
 /* client chatroom */
 
-var ip   = '192.168.0.247';
+var ip   = '192.168.0.235';
 var port = '3000';
 var socket = io.connect(ip + ':' + port);
 var loginStatus = 'false';
@@ -68,15 +68,10 @@ $(function () {
   });
 
   /* status - persons list */
-  socket.on('statusList', function (personsList) {
-
-  });
-
-
   var template = $('#template').html();
   var $popListContent = $('.popList-content');
   var $content = $popListContent.html();
-  socket.on('test', function (personsList) {
+  socket.on('statusList', function (personsList) {
 
     $popListContent.html($content);
 

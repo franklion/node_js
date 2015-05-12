@@ -6,7 +6,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://192.168.0.247:3000/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="http://192.168.0.235:3000/socket.io/socket.io.js"></script>
   <script src="js/main.js"></script>
 </head>
 <body>
@@ -20,27 +21,34 @@
     </div>
   </div>
   <div id="wrapper">
-    <div id="output"></div>
-    <div id="horizontal-bar"></div>
-    <div id="send">
-      <div class="send-bar">
-        <span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
-        <span class="glyphicon glyphicon-th-list" id="send-bar-list" aria-hidden="true"></span>
+
+    <div class="output-left">
+      <div id="output"></div>
+      <div id="horizontal-bar"></div>
+      <div id="send">
+        <div class="set-font-color">
+          <span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
+        </div>
+        <div class="send-bar-list">
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+        </div>
+        <input type="text" id="data" size="100"/>
+        <button id="send-text" value="send text"/>
+          <p>Send</p>
+        </button>
       </div>
-      <input type="text" id="data" size="100"/>
-      <button id="send-text" value="send text"/>
-        <p>Send</p>
-      </button>
     </div>
+
     <div class="popList">
       <div class="popList-top">
         <h3></h3>
+        <div class="clear">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </div>
       </div>
-      <div class="popList-content">
-        <!--<h4>聊天室人員清單</h4>-->
-      </div>
-
+      <div class="popList-content"></div>
     </div>
+
   </div>
 
   <script type="text/template" id="template">
@@ -48,5 +56,6 @@
       <img src="images/person.svg" alt="person"><p>{name}</p>
     </div>
   </script>
+
 </body>
 </html>

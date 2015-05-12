@@ -52,14 +52,21 @@ body {
 #wrapper {
   width: 500px;
   height: 800px;
-  background-color: #ddccbf;
-  border: solid 1px white;
   margin: 0 auto;
-  text-align: center;
-  position: relative;
-  -moz-box-shadow: black 0px 0px 3px;
-  -webkit-box-shadow: black 0px 0px 3px;
-  box-shadow: black 0px 0px 3px; }
+  position: relative; }
+  #wrapper .output-left {
+    width: 500px;
+    height: 800px;
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    z-index: 999;
+    background-color: #ddccbf;
+    border: solid 1px white;
+    -moz-box-shadow: black 0px 0px 3px;
+    -webkit-box-shadow: black 0px 0px 3px;
+    box-shadow: black 0px 0px 3px;
+    text-align: center; }
 
 h1 {
   font-size: 40px; }
@@ -77,7 +84,7 @@ p {
   font-size: 20px; }
 
 h1, h2, h3, h4, p {
-  font-family: 微軟正黑體 , 新細明體, sans-serif; }
+  font-family: sans-serif, 微軟正黑體 , 新細明體; }
 
 /* 狀態列 */
 #status {
@@ -117,13 +124,13 @@ h1, h2, h3, h4, p {
 
 /* 聊天室文字輸出區塊 */
 #output {
-  display: inline-block;
   width: 480px;
   height: 580px;
-  overflow: auto;
-  background-color: white;
+  display: inline-block;
   margin-top: 10px;
-  text-align: left; }
+  overflow: auto;
+  text-align: left;
+  background-color: white; }
   #output p {
     padding: 10px; }
   #output h3 {
@@ -142,30 +149,29 @@ h1, h2, h3, h4, p {
 #send {
   width: 500px;
   height: 50px;
-  /*background-color: red;*/
+  position: relative;
   margin-top: 10px;
   padding: 50px 0px;
-  position: relative; }
-
-/* 狀態列-控制項區塊 */
-.send-bar {
-  width: 60px;
-  height: 30px;
-  /*background-color: red;*/
-  position: absolute;
-  top: 0px;
-  right: 5px; }
-  .send-bar span {
-    font-size: 24px;
-    text-shadow: 1px 1px 5px grey; }
+  /* 設定顏色 */
+  /* 觀看人數 */ }
+  #send .set-font-color {
+    position: absolute;
+    top: 0px;
+    right: 49px;
+    font-size: 24px; }
+  #send .send-bar-list {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    font-size: 24px; }
 
 /* 輸入文字區塊 */
 #data {
-  display: inline-block;
   width: 370px;
   height: 50px;
-  font-size: 30px;
+  display: inline-block;
   margin-left: 10px;
+  font-size: 30px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
@@ -175,41 +181,51 @@ h1, h2, h3, h4, p {
 
 /* 發送文字按鈕 */
 #send-text {
-  display: inline-block;
   width: 100px;
   height: 60px;
+  display: inline-block;
+  background-color: #efefef;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background-color: #efefef; }
+  border-radius: 10px; }
   #send-text p {
     font-size: 24px;
     font-family: Arial;
     line-height: 60px; }
 
+/* 聊天室人員清單 */
 .popList {
   width: 250px;
   height: 580px;
-  background-color: #fafafa;
   position: absolute;
-  top: 10px;
-  right: -280px;
-  opacity: 1;
+  top: 18px;
+  right: 10px;
+  z-index: 998;
   border: solid 5px #DDCCBF;
+  background-color: #fafafa;
   -moz-box-shadow: 0px 0px 10px black;
   -webkit-box-shadow: 0px 0px 10px black;
-  box-shadow: 0px 0px 10px black; }
+  box-shadow: 0px 0px 10px black;
+  /* 顯示線上人數 */
+  /* 顯示人員名稱 */ }
   .popList .popList-top {
     width: 170px;
     height: 50px;
-    margin: 0 auto;
-    margin-top: 20px;
+    position: relative;
+    margin: 20px auto 0px auto;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px; }
+    border-radius: 10px;
+    /* 關閉按鈕 */ }
     .popList .popList-top h3 {
       padding-top: 15px;
-      text-align: center; }
+      text-align: center;
+      font-family: Arial; }
+    .popList .popList-top .clear {
+      position: absolute;
+      top: -20px;
+      right: -35px;
+      font-size: 35px; }
   .popList .popList-content {
     width: 240px;
     height: 470px;
@@ -217,23 +233,20 @@ h1, h2, h3, h4, p {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #fafafa; }
-    .popList .popList-content h4 {
-      padding: 10px;
-      text-shadow: 0px 0px 3px #aed5fc; }
     .popList .popList-content .popList-person {
       width: 240px;
       height: 60px; }
-      .popList .popList-content .popList-person p {
-        padding: 2px 5px;
+      .popList .popList-content .popList-person:before {
+        content: '';
+        height: 100%;
         display: inline-block;
+        vertical-align: middle; }
+      .popList .popList-content .popList-person p {
+        display: inline-block;
+        padding: 2px 5px;
         vertical-align: middle; }
       .popList .popList-content .popList-person img {
         width: 50px;
         height: 50px;
         display: inline-block;
         vertical-align: middle; }
-    .popList .popList-content .popList-person:before {
-      content: '';
-      height: 100%;
-      display: inline-block;
-      vertical-align: middle; }
